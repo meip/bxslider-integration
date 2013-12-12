@@ -228,10 +228,24 @@ class BXSG_Settings {
 					    				. __( 'The speed of the transition (a number of milliseconds). '
 	    									. 'This can be overriden in the shortcode itself by passing the parameter <code>speed=1500</code> or <code>speed=500</code>.', 'bxsg' )
 	    								. '</p>' )
-			);	
-		
+			);
+
+        add_settings_field(
+                self::$OPTION_GS_CAROUSEL_SIZE,
+                __('Gallery size', 'bxsg'),
+                array( &$this, 'print_input_field' ),
+                self::$OPTIONS_PAGE_SLUG,
+                'bxsg_section_gallery_shortcode',
+                array(
+                    'option_id' => self::$OPTION_GS_CAROUSEL_SIZE,
+                    'type' 		=> 'text',
+                    'caption'	=> '<p class="description"><em>'
+                                        . __( 'image size (full, large, medium etc.)', 'bxsg' )
+                                        . '</em></p>' )
+            );
+
 		add_settings_field(
-				self::$OPTION_GS_CAROUSEL_THUMB_WIDTH, 
+				self::$OPTION_GS_CAROUSEL_THUMB_WIDTH,
 				__('Carousel thumb width', 'bxsg'),
 				array( &$this, 'print_input_field' ), 
 				self::$OPTIONS_PAGE_SLUG,
@@ -242,7 +256,7 @@ class BXSG_Settings {
 	    			'caption'	=> '<p class="description"><em>'
 					    				. __( 'a number without unit; Will be interpreted as a value in pixels', 'bxsg' )
 	    								. '</em></p>' )
-			);	
+			);
 		
 		add_settings_field(
 				self::$OPTION_GS_CAROUSEL_THUMB_MARGIN, 
@@ -427,6 +441,7 @@ class BXSG_Settings {
     	$this->validate_int( $input, $validated, self::$OPTION_GS_SPEED );    
     	$this->validate_int( $input, $validated, self::$OPTION_GS_DURATION );   
     	$this->validate_string( $input, $validated, self::$OPTION_GS_EXTRA_OPTIONS );  
+    	$this->validate_string( $input, $validated, self::$OPTION_GS_CAROUSEL_SIZE );
     	$this->validate_int( $input, $validated, self::$OPTION_GS_CAROUSEL_THUMB_WIDTH, 1 );
     	$this->validate_int( $input, $validated, self::$OPTION_GS_CAROUSEL_THUMB_MARGIN, 0 );
     	$this->validate_int( $input, $validated, self::$OPTION_GS_CAROUSEL_MIN_THUMBS, 1 );
@@ -628,6 +643,7 @@ class BXSG_Settings {
 				self::$OPTION_GS_AUTO_START 				=> true,
 				self::$OPTION_GS_SPEED 						=> 500,
 				self::$OPTION_GS_DURATION 					=> 2000,
+                self::$OPTION_GS_CAROUSEL_SIZE	        	=> 'full',
 				self::$OPTION_GS_EXTRA_OPTIONS 				=> '',
 				self::$OPTION_GS_CAROUSEL_THUMB_WIDTH		=> 60,
 				self::$OPTION_GS_CAROUSEL_THUMB_MARGIN		=> 5,
@@ -665,6 +681,7 @@ class BXSG_Settings {
 	public static $OPTION_GS_AUTO_START					= 'gs_auto_start';
 	public static $OPTION_GS_SPEED						= 'gs_speed';
 	public static $OPTION_GS_DURATION					= 'gs_duration';
+    public static $OPTION_GS_CAROUSEL_SIZE		        = 'gs_carousel_size';
 	public static $OPTION_GS_EXTRA_OPTIONS				= 'gs_extra_options';
 	public static $OPTION_GS_CAROUSEL_THUMB_WIDTH		= 'gs_carousel_thumb_width';
 	public static $OPTION_GS_CAROUSEL_THUMB_MARGIN		= 'gs_carousel_thumb_margin';

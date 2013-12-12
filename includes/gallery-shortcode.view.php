@@ -24,9 +24,9 @@ $gallery_extra_classes = $adaptive_height ? 'adaptive-height-on ' : 'adaptive-he
 <div id="<?php echo $gallery_id; ?>" class="bxslider-gallery <?php echo esc_attr( $gallery_extra_classes ); ?>">
 	<div class="gallery-wrapper">
 	<div class="bxslider">
-<?php 	
+<?php
 foreach ( $attachments as $attachment ) : 
-	$img_attr = wp_get_attachment_image_src( $attachment->ID, 'full' );
+	$img_attr = wp_get_attachment_image_src( $attachment->ID, $size );
 	$title = apply_filters( 'the_title', $attachment->post_title, $attachment->ID );
 	$desc = $attachment->post_excerpt;
 ?>
